@@ -8,17 +8,18 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import { fetchImagesWithName } from "./images-api";
+import { Image } from "./Types/types";
 
 function App() {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
-  const handleSearch = async (name) => {
+  const handleSearch = async (name: string) => {
     setQuery(name);
     setPage(1);
     try {
@@ -47,7 +48,7 @@ function App() {
     }
   };
 
-  const handleImageClick = (image) => {
+  const handleImageClick = (image: Image) => {
     setSelectedImage(image);
     setModalIsOpen(true);
   };
@@ -61,14 +62,7 @@ function App() {
     <>
       <SearchBar onSubmit={handleSearch} />
       <Toaster position="top-right" />
-      {loading && (
-        <InfinitySpin
-          visible={true}
-          width="200"
-          color="#4fa94d"
-          ariaLabel="infinity-spin-loading"
-        />
-      )}
+      {loading && <InfinitySpin width="200" color="#4fa94d" />}
       {error && <ErrorMessage />}
       {images.length > 0 && (
         <ImageGallery items={images} onImageClick={handleImageClick} />

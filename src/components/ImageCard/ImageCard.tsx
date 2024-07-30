@@ -1,7 +1,13 @@
 import React from "react";
 import css from "./ImageCard.module.css";
+import { Image } from "../../Types/types";
 
-const ImageCard = ({ image, onClick }) => (
+type Props = {
+  image: Image;
+  onClick: (image: Image) => void;
+};
+
+const ImageCard = ({ image, onClick }: Props) => (
   <div className={css.card}>
     <img
       src={image.urls.small}

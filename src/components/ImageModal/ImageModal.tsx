@@ -1,10 +1,18 @@
 import React from "react";
 import Modal from "react-modal";
 import css from "./ImageModal.module.css";
+import { Props } from "react-loader-spinner";
+import { Image } from "../../Types/types";
 
 Modal.setAppElement("#root");
 
-const ImageModal = ({ isOpen, onClose, image }) => (
+type ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  image: Image;
+};
+
+const ImageModal = ({ isOpen, onClose, image }: ModalProps) => (
   <Modal
     isOpen={isOpen}
     onRequestClose={onClose}
