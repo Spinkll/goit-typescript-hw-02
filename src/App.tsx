@@ -8,7 +8,7 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import { fetchImagesWithName } from "./images-api";
-import { Image } from "./Types/types";
+import { Image, SearchResult } from "./Types/types";
 
 function App() {
   const [images, setImages] = useState<Image[]>([]);
@@ -26,7 +26,7 @@ function App() {
       setImages([]);
       setError(false);
       setLoading(true);
-      const data = await fetchImagesWithName(name, 1);
+      const data: SearchResult = await fetchImagesWithName(name, 1);
       setImages(data.results);
     } catch (error) {
       setError(true);

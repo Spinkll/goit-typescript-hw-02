@@ -11,3 +11,8 @@ export interface Image {
   };
   likes: number;
 }
+export interface SearchResult {
+  total: number;
+  total_pages: number;
+  results: Image[];
+}

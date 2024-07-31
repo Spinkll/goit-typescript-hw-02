@@ -1,15 +1,9 @@
 import axios from "axios";
-import { Image } from "./Types/types";
+import { Image, SearchResult } from "./Types/types";
 
 const ACCESS_KEY = "b67HWZv_CXbbKTODV7K3MHDR1jN7rXqS8dtB6OO1eE4";
 
 axios.defaults.baseURL = "https://api.unsplash.com/";
-
-interface SearchResult {
-  total: number;
-  total_pages: number;
-  results: Image[];
-}
 
 export const fetchImagesWithName = async (
   name: string,
